@@ -79,7 +79,8 @@ class ActivityDashboard extends Component{
         }
       <View 
         style={{ 
-          flex: 2, 
+          flex: 2,
+          marginTop: 5, 
           flexDirection: 'column', 
           backgroundColor: 'rgba(000,000,000, .1)',
         }}>

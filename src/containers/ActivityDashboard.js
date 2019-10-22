@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { View, Button, Text, StyleSheet, Picker} from 'react-native';
+import { View, Button, Text, StyleSheet, Picker, ScrollView} from 'react-native';
 import ActivityForm from '../components/ActivityForm';
 import ActivityCard from '../components/ActivityCard';
 import {openForm, seedDb} from '../actions/activity.actions';
@@ -9,7 +9,8 @@ import {openForm, seedDb} from '../actions/activity.actions';
 class ActivityDashboard extends Component{
   state = {
     activities: [],
-    filterBy: ''
+    filterBy: '',
+    isDeleting: this.props.isDeleting
   }
   componentDidMount(){
     this.setState({
@@ -41,22 +42,24 @@ class ActivityDashboard extends Component{
       id={activity.id || ''}
       name={activity.name || ''}
       description={activity.description || ''}
-      status={activity.status || ''}
       date={activity.date || ''}
       time={activity.time || ''}
       />
       :
-      filtered.map((activity) => 
-      <ActivityCard
-      key={activity.id}
-      id={activity.id}
-      name={activity.name}
-      description={activity.description}
-      status={activity.status}
-      date={activity.date}
-      time={activity.time}
-      />
-      )
+      <ScrollView>
+        {
+          filtered.map((activity) => 
+          <ActivityCard
+          key={activity.id}
+          id={activity.id}
+          name={activity.name}
+          description={activity.description}
+          date={activity.date}
+          time={activity.time}
+          />
+          )
+        }
+      </ScrollView>
     return (
       <>
         {
@@ -79,7 +82,8 @@ class ActivityDashboard extends Component{
         }
       <View 
         style={{ 
-          flex: 2, 
+          flex: 2,
+          marginTop: 5, 
           flexDirection: 'column', 
           backgroundColor: 'rgba(000,000,000, .1)',
         }}>
@@ -100,7 +104,7 @@ class ActivityDashboard extends Component{
           : <Text></Text>
         }
       </View>
-    </>
+      </>
     )
   }
 }
@@ -108,7 +112,7 @@ class ActivityDashboard extends Component{
 const style = StyleSheet.create({
   newActivity: {
     position:'absolute',
-    bottom: 20,
+    top: 0,
     borderRadius: 50,
     right: 0,
   },
@@ -117,9 +121,10 @@ const mapStateToProps = state => ({
   isFormOpen: state.activityReducer.isFormOpen,
   activity: state.activityReducer.activity,
   activities: state.activityReducer.activities,
+  isDeleting: state.activityReducer.isDeleting
 })
 
 export default connect(mapStateToProps, {
   open: openForm,
-  seed: seedDb
+  seed: seedDb,
 })(ActivityDashboard);

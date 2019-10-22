@@ -14,7 +14,6 @@ class ActivityForm extends Component{
       description: this.props.description || '',
       date: this.props.date || '',
       time: this.props.time || '',
-      status: this.props.status || 'undone',
       error: {
         message: []
       }
@@ -44,7 +43,7 @@ class ActivityForm extends Component{
       }
     }
 
-    handleCreateActivity = (e) => {
+    handleCreateActivity = () => {
       let error = 0
       const {add} = this.props;
       let isNameValid = this.validate(this.state.name, 'name');
@@ -61,7 +60,6 @@ class ActivityForm extends Component{
           id: uuid(),
           name: this.state.name,
           description: this.state.description,
-          status: this.state.status,
           date: this.state.date,
           time: this.state.time,
         }
@@ -114,7 +112,15 @@ class ActivityForm extends Component{
           </TouchableHighlight>
         </View>
         <View style={style.cardHolder}>
-          <Text>Create An Activity</Text>
+          <Text
+          style={{
+            alignSelf: 'center',
+            fontWeight: 'bold',
+            fontSize: 19,
+          }}
+          >
+            Create An Activity
+          </Text>
           <Text>Todo Name</Text>
           <TextInput
           style={style.input}
@@ -159,7 +165,7 @@ class ActivityForm extends Component{
           />
           <Button
           title={this.state.id ? 'Update Activity' : 'Create Activity'}
-          onPress={(e) => this.handleCreateActivity(e)}
+          onPress={() => this.handleCreateActivity()}
           />
         </View>
       </View>

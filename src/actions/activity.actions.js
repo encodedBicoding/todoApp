@@ -2,7 +2,9 @@ import {
   CREATE, 
   OPEN_FORM, 
   CLOSE_FORM,
-  SEED
+  SEED,
+  IS_DELETING,
+  DELETED
 } from '../action_types/activity.types';
 
 export const createActivity = (activity) => dispatch => {
@@ -18,3 +20,9 @@ export const openForm = (activity) => dispatch => {
 export const seedDb = (data) => dispatch => {
   dispatch({ type: SEED, payload: data})
 } 
+export const isDeleting = () => dispatch => {
+  dispatch({ type: IS_DELETING})
+}
+export const deleted = () => dispatch => {
+  dispatch({ type: DELETED})
+}

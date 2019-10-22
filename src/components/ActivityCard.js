@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, Alert} from 'react-native';
 import { connect } from 'react-redux';
-import {openForm} from '../actions/activity.actions';
+import {openForm, isDeleting, deleted} from '../actions/activity.actions';
 import database from '../model/data';
 
 class ActivityCard extends Component{
@@ -9,11 +9,11 @@ class ActivityCard extends Component{
       id: this.props.id,
       name: this.props.name,
       description: this.props.description,
-      status: this.props.status,
       date: this.props.date,
       time: this.props.time,
   }
   handleDelete = () => {
+    this.props.isDeleting();
     Alert.alert(
       'Delete',
       'Are you sure you want to delete this activity?',
@@ -23,7 +23,10 @@ class ActivityCard extends Component{
           onPress: () => '',
           style: 'cancel',
         },
-        {text: 'OK', onPress: () => database.delete(this.state)},
+        {text: 'OK', onPress: () => {
+          database.delete(this.state)
+          return this.props.deleted()
+        }},
       ],
       {cancelable: true},
     );
@@ -120,5 +123,7 @@ const mapStateToProps = (state) => ({
   isFormOpen: state.activityReducer.isFormOpen
 })
 export default connect(mapStateToProps, {
-  open: openForm
+  open: openForm,
+  isDeleting: () => isDeleting(),
+  deleted: () => deleted()
 })(ActivityCard);

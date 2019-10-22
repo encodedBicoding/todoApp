@@ -23,11 +23,14 @@ $ cd todoApp
 $ npm install
 ```
 >- Download expo app on your mobile device
->- on your system terminal, run ```bash expo start```
+>- on your system terminal, run 
+```bash 
+$ expo start
+```
 
->- Expo will ask you to scan the barcode provide or use the emulator
+>- Expo will ask you to scan the barcode provided or use the emulator
 
->- since the emulator will consume data, scan the barcode using the expo app in your mobile device.
+>- since the emulator will consume data, scan the barcode using the expo app on your mobile device.
 
 >- Enjoy the app and follow your activities keenly.
 >- Send a message to report any bug encountered to dominicisioma000@gmail.com

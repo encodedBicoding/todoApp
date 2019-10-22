@@ -6,6 +6,27 @@ class Database{
         id: uuid(),
         name: 'Read at night',
         description: 'Read react native',
+        date:  '2019-09-19',
+        time: '20:20PM'
+      },
+      {
+        id: uuid(),
+        name: 'Write a new program',
+        description: 'Create something iconic',
+        date:  '2019-09-19',
+        time: '20:20PM'
+      },
+      {
+        id: uuid(),
+        name: 'Make lunch',
+        description: 'Friends are coming',
+        date:  '2019-09-19',
+        time: '20:20PM'
+      },
+      {
+        id: uuid(),
+        name: 'Sleep after lunch',
+        description: 'so you can code at night',
         status: 'undone',
         date:  '2019-09-19',
         time: '20:20PM'
@@ -29,7 +50,7 @@ class Database{
   delete(obj){
     const idx = this.__db.findIndex((ent) => ent.id === obj.id);
     if(idx===-1) return;
-    delete this.__db[idx];
+    this.__db.splice(idx,1);
   }
 }
 

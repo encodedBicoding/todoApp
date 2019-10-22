@@ -2,7 +2,8 @@
 const initialState = {
   activities: [],
   isFormOpen: false,
-  activity: {}
+  activity: {},
+  isDeleting: false,
 };
 
 const activityReducer = (state = initialState, action) => {
@@ -29,6 +30,16 @@ const activityReducer = (state = initialState, action) => {
         ...state,
         activities: [...data]
       }
+    }
+    case 'IS_DELETING': {
+      return Object.assign({}, state, {
+        isDeleting: true,
+      })
+    }
+    case 'DELETED': {
+      return Object.assign({}, state, {
+        isDeleting: false
+      })
     }
     default: {
       return state;

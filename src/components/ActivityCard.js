@@ -40,7 +40,7 @@ class ActivityCard extends Component{
           <View 
            style={style.textInner}>
             <Text style={{
-              fontSize: this.state.name.length > 20 ? 19 : 29,
+              fontSize: this.state.name.length > 15 ? 18 : 23,
               fontWeight: 'bold'
             }}>
               {this.state.name}

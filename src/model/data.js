@@ -11,7 +11,7 @@ class Database{
       },
       {
         id: uuid(),
-        name: 'Write a new program',
+        name: 'Write a program',
         description: 'Create something iconic',
         date:  '2019-09-19',
         time: '20:20PM'
